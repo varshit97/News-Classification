@@ -16,13 +16,13 @@ B = {}
 def calcProb(name, total):
     for i in vocabulary:
         B[i] = 0
-    filewords = []
     a = []
     a = os.listdir('./datasets/' + name)
     for i in a:
+        filewords = []
     	g = open('./datasets/' + name + '/' + i, 'r')
     	txt = g.readlines()
-            g.close()
+        g.close()
     	for line in txt:
     	    line = line.strip().decode("ascii","ignore").encode("ascii")
     	    words = nltk.word_tokenize(line)
