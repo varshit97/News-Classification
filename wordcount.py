@@ -1,5 +1,3 @@
-# coding=utf-8
-
 import os
 import nltk
 
@@ -24,17 +22,17 @@ def calcProb(name, total):
     	txt = g.readlines()
         g.close()
     	for line in txt:
-    	    line = line.strip().decode("ascii","ignore").encode("ascii")
+    	    line = line.strip().decode("ascii", "ignore").encode("ascii")
     	    words = nltk.word_tokenize(line)
     	    for word in words:
     	        if word not in filewords:
-    		    filewords.append(word)
+    	    	    filewords.append(word)
     	for j in filewords:
     	    if j in vocabulary:
-    		B[j]+=1
+        		B[j] += 1
     k = open('./word_frequencies/' + 'b' + name, 'w')
     for i in B.keys():
-    	k.write(i.strip() + '*' + str(1.0*B[i]/total) + '\n')
+    	k.write(i.strip() + '*' + str(1.0*B[i]/(total - 50)) + '\n')
     k.close()
     
 calcProb('sport', 511)
