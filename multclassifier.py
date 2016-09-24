@@ -1,6 +1,5 @@
 import nltk
 import os
-
 g = open('finalWords', 'r')
 voc = g.readlines()
 g.close()
@@ -21,16 +20,16 @@ for i in probability.keys():
     total += probability[i]
 
 def classify(name, num):
-    h = open('./word_frequencies/b' + name, 'r')
+    h = open('./mult_word_frequencies/b' + name, 'r')
     txt = h.readlines()
     h.close()
     freq = {}
     for i in txt:
-	data = i.strip().split('*')
-	freq[data[0]] = float(data[1])
-    prob = (num * 1.0)/total
+    	data = i.strip().split('*')
+        freq[data[0]] = float(data[1])
+        prob = (num * 1.0)/total
     for i in bsport.keys():
-	prob *= ((bsport[i] * freq[i]) + ((1 - bsport[i]) * (1 - freq[i])))
+	    prob *= freq[i]**bsport[i]
     return prob
 
 for i in voc:
@@ -40,7 +39,7 @@ for classes in probability.keys():
     inputFiles = os.listdir('./Input/' + classes)
     correct = 0
     for files in inputFiles:
-        filewords = []
+        filewords = {}
         f = open('./Input/' + classes + '/' + files, 'r')
         fil = f.readlines()
         f.close()
@@ -50,18 +49,21 @@ for classes in probability.keys():
             line = i.strip().decode("ascii", "ignore").encode("ascii")
             words = nltk.word_tokenize(line)
             for word in words:
-        	if word not in filewords:
-        	    filewords.append(word)
+                if word not in filewords:
+                    filewords[word] = 1
+                else:
+                    filewords[word] += 1
         for j in filewords:
             if j in vocabulary:
-        	bsport[j] = 1
+            	bsport[j] += filewords[j]
         maxProb = -1
         finalclass = ''
         for i in probability.keys():
             presProb = classify(i, probability[i])
             if maxProb < presProb:
-        	finalClass = i
-        	maxProb = presProb
+            	finalClass = i
+            	maxProb = presProb    
         if classes == finalClass:
             correct += 1
+
     print "Class:", classes, "Accuracy:", correct/50.0

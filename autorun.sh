@@ -1,11 +1,18 @@
 #Generate Random test cases from the dataset
 echo "Generating Tests"
 python generateTests.py
-
 #Generate the prpbabilities of each word
-echo "Calculating Probabilities"
-python wordcount.py
-
-#Classify the inputs
-echo "Classifying the inputs"
-python classifier.py
+if [ $1 == 1 ]; then
+    echo "Calculating Probabilities"
+    python wordcount.py
+    #Classify the inputs
+    echo "Classifying the inputs"
+    python classifier.py
+fi
+if [ $1 == 2 ]; then
+    echo "Calculating Probabilities"
+    python wordfreq.py
+    #Classify the inputs
+    echo "Classifying the inputs"
+    python multclassifier.py
+fi
