@@ -86,19 +86,17 @@ def creator(train):
                 types.append(3)
             if classes == 'entertainment':
                 types.append(4)
-        #print "Class:", classes, "Accuracy:", correct/50.0
-    if train==0:
-        X_train=np.array(inp)
-        y_train=np.array(types)
+    if train == 0:
+        X_train = np.array(inp)
+        y_train = np.array(types)
         return X_train, y_train
     else:
-        X_test=np.array(inp)
-        y_test=np.array(types)
+        X_test = np.array(inp)
+        y_test = np.array(types)
         return X_test, y_test
 
 X_train, y_train = creator(0)
 X_test, y_test = creator(1)
-#X_train, X_test, y_train, y_test = cross_validation.train_test_split(np.array(inp), np.array(types))
 forest = RandomForestClassifier()
 forest.fit(X_train, y_train)
 
@@ -126,6 +124,5 @@ for i in range(5):
     print accuracy
     for key in accuracy.keys():
         sumy += accuracy[key][1]
-	#for key in accuracy.keys():
-	#    print accuracy[i][0], ' --> ', accuracy[key][0], (100.0*accuracy[key][1])/sumy
-		
+    for key in accuracy.keys():
+	print accuracy[i][0], ' --> ', accuracy[key][0], (100.0*accuracy[key][1])/sumy		

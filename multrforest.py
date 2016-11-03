@@ -89,15 +89,14 @@ def creator(train):
                 types.append(3)
             if classes == 'entertainment':
                 types.append(4)
-    if train==0:
-        X_train=np.array(inp)
-        y_train=np.array(types)
+    if train == 0:
+        X_train = np.array(inp)
+        y_train = np.array(types)
         return X_train, y_train
     else:
-        X_test=np.array(inp)
-        y_test=np.array(types)
+        X_test = np.array(inp)
+        y_test = np.array(types)
         return X_test, y_test
-    #print "Class:", classes, "Accuracy:", correct/50.0
 
 X_train, y_train = creator(0)
 X_test, y_test = creator(1)
@@ -108,7 +107,6 @@ accuracy = forest.score(X_test, y_test)
 print 'The accuracy was', 100*accuracy, '% on the test data.'
 
 classifications = forest.predict(X_test)
-#print 'The digit at index 0 of X_test was classified as a', classifications[0], '.'
 
 def getAccuracy(category):
     accuracy = {
@@ -123,7 +121,6 @@ def getAccuracy(category):
             accuracy[classifications[i]][1] += 1
     return accuracy
 
-print 'Accuracy for each category'
 for i in range(5):
     accuracy = getAccuracy(i)
     sumy = 0
