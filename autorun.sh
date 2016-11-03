@@ -16,3 +16,17 @@ if [ $1 == 2 ]; then
     echo "Classifying the inputs"
     python multclassifier.py
 fi
+if [ $1 == 3 ]; then
+    echo "Calculating Probabilities"
+    python wordfreq.py
+    #Classify the inputs
+    echo "Classifying the inputs"
+    python rforest.py
+fi
+if [ $1 == 4 ]; then
+    echo "Calculating Probabilities"
+    python wordfreq.py
+    #Classify the inputs
+    echo "Classifying the inputs"
+    python multrforest.py
+fi

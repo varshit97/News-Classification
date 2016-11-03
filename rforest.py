@@ -123,7 +123,9 @@ print 'Accuracy for each category'
 for i in range(5):
     accuracy = getAccuracy(i)
     sumy = 0
+    print accuracy
     for key in accuracy.keys():
         sumy += accuracy[key][1]
-    for key in accuracy.keys():
-        print accuracy[i][0], ' --> ', accuracy[key][0], (100.0*accuracy[key][1])/sumy
+	#for key in accuracy.keys():
+	#    print accuracy[i][0], ' --> ', accuracy[key][0], (100.0*accuracy[key][1])/sumy
+		

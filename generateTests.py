@@ -18,7 +18,7 @@ def getInput():
             filePath = './Input/' + types
             os.system("mv %s/* ./datasets/%s/" %(filePath, types))
         for types in classes.keys():
-            while len(files) <= 50:
+            while len(files) < 50:
                 fileNumber = random.randint(1, classes[types])
                 fileName = "{0:03}".format(fileNumber) + '.txt'
                 if fileName not in files:
